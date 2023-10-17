@@ -1,12 +1,13 @@
 const nodemailer = require("nodemailer");
-class clientMail {
+
+class ClientMail {
   constructor(clientEmail, domain) {
     this.clientEmail = clientEmail;
     this.domain = domain;
   }
 }
 
-class devMail {
+class DevMail {
   constructor(sender, receiver, subject, message) {
     this.sender = sender;
     this.receiver = receiver;
@@ -59,11 +60,11 @@ const sendDevMail = async (devMailInstance) => {
 const sendMailer = async (req, res) => {
   const mailBody = req.body;
 
-  const clientMailInstance = new clientMail(
+  const clientMailInstance = new ClientMail(
     mailBody.clientEmail,
     mailBody.domain
   );
-  const devMailInstance = new devMail(
+  const devMailInstance = new DevMail(
     mailBody.sender,
     mailBody.receiver,
     mailBody.subject,
@@ -74,10 +75,10 @@ const sendMailer = async (req, res) => {
   console.log(devMailInstance);
 
   try {
-    if (clientMailInstance instanceof clientMail) {
+    if (clientMailInstance instanceof ClientMail) {
       console.log(`from inside of clientMail ${clientMailInstance}`);
       await sendClientMail(clientMailInstance);
-    } else if (devMailInstance instanceof devMail) {
+    } else if (devMailInstance instanceof DevMail) {
       console.log(`from inside of devMail ${devMailInstance}`);
       await sendDevMail(devMailInstance);
     } else {
