@@ -15,7 +15,7 @@ router.post("/mailToContributor", sendMailToContributor);
 // mail send to developer
 router.post("/mailToDev", sendMailToDev);
 
-// generic mail function for all mail //
+// generic mail function route for all mail //
 router.post("/sendMail", sendMailer);
 
 module.exports = router;

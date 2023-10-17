@@ -72,7 +72,6 @@ const sendMailer = async (req, res) => {
 
   console.log(clientMailInstance);
   console.log(devMailInstance);
-  console.log("hit");
 
   try {
     if (clientMailInstance instanceof clientMail) {
