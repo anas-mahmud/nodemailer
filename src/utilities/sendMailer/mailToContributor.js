@@ -19,7 +19,7 @@ const sendMailToContributor = async (req, res) => {
     theme: "default",
     product: {
       name: "Web Tech Solution",
-      link: "https://web-ts-official.web.app/",
+      link: "https://web-Tech-Solution.com/",
     },
   });
 
@@ -32,7 +32,7 @@ const sendMailToContributor = async (req, res) => {
         button: {
           color: "#22BC66", // Optional action button color
           text: "Go To Website -->",
-          link: "https://web-ts-official.web.app/admin-profile/dashboard/new-task-list",
+          link: "https://web-Tech-Solution.com/admin-profile/dashboard/new-task-list",
         },
       },
       outro: "We appreciate working with you",
