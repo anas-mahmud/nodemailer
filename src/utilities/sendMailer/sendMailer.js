@@ -18,7 +18,7 @@ class DevMail {
 
 const sendMail_ = async (mailInfo) => {
   const config = {
-    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: process.env.GMAIL_APP,
       pass: process.env.GMAIL_APP_PASS,

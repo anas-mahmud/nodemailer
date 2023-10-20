@@ -2,12 +2,12 @@ const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 
 const sendMailToClient = async (req, res) => {
-  const clientEmail = req.body.email;
+  const clientEmail = req.body.clientEmail;
   const domain = req.body.domain;
   const name = req.body.name;
 
   const config = {
-    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: process.env.GMAIL_APP,
       pass: process.env.GMAIL_APP_PASS,
@@ -56,8 +56,11 @@ const sendMailToClient = async (req, res) => {
         message: "mail has been sent",
       });
     })
-    .catch((err) => {
-      return res.status(500).json({ err });
+    .catch((error) => {
+      return res.status(500).json({
+        message: "Failed to send mail",
+        error: error
+      });
     });
 };
 

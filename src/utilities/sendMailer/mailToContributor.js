@@ -6,7 +6,7 @@ const sendMailToContributor = async (req, res) => {
     req.body;
 
   const config = {
-    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: process.env.GMAIL_APP,
       pass: process.env.GMAIL_APP_PASS,
@@ -56,8 +56,11 @@ const sendMailToContributor = async (req, res) => {
         message: "mail has been sent",
       });
     })
-    .catch((err) => {
-      return res.status(500).json({ err });
+    .catch((error) => {
+      return res.status(500).json({
+        message: "Failed to send mail",
+        error: error
+      });
     });
 };
 

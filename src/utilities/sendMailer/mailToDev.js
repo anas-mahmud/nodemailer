@@ -5,13 +5,13 @@ const nodemailer = require("nodemailer");
 const sendMailToDev = async (req, res) => {
   const sender = req.body.sender;
   const receiver = req.body.receiver;
-  const receiverName = req.body.receiverName;
+  // const receiverName = req.body.receiverName;
   const subject = req.body.subject;
   const message = req.body.message;
   // console.log(req.body);
 
   const config = {
-    service: "gmail",
+    host: "smtp.gmail.com",
     auth: {
       user: process.env.GMAIL_APP,
       pass: process.env.GMAIL_APP_PASS,
@@ -53,8 +53,11 @@ const sendMailToDev = async (req, res) => {
         message: "mail has been sent",
       });
     })
-    .catch((err) => {
-      return res.status(500).json({ err });
+    .catch((error) => {
+      return res.status(500).json({
+        message: "Failed to send mail",
+        error: error
+      });
     });
 };
 
