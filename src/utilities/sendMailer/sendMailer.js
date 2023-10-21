@@ -16,25 +16,20 @@ class DevMail {
   }
 }
 
+const config = {
+  host: "smtp.gmail.com",
+  auth: {
+    user: process.env.GMAIL_APP,
+    pass: process.env.GMAIL_APP_PASS,
+  },
+};
+const transporter = nodemailer.createTransport(config);
+
 const sendMail_ = async (mailInfo) => {
-  const config = {
-    host: "smtp.gmail.com",
-    auth: {
-      user: process.env.GMAIL_APP,
-      pass: process.env.GMAIL_APP_PASS,
-    },
-  };
-  const transporter = nodemailer.createTransport(config);
   return transporter
     .sendMail(mailInfo)
-    .then(() => {
-      return res.status(200).json({
-        message: "mail has been sent",
-      });
-    })
-    .catch((err) => {
-      return res.status(500).json({ err });
-    });
+    .then(() => res.send("mail has been sent"))
+    .catch((err) => res.status(500).json({ err }));
 };
 
 const sendClientMail = async (clientMailInstance) => {
@@ -44,6 +39,7 @@ const sendClientMail = async (clientMailInstance) => {
     subject: "Project Has Submitted.",
     text: clientMailInstance.domain,
   };
+  console.log(mailInfo);
   return sendMail_(mailInfo);
 };
 
