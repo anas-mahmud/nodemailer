@@ -39,7 +39,7 @@ const sendClientMail = async (clientMailInstance) => {
     subject: "Project Has Submitted.",
     text: clientMailInstance.domain,
   };
-  console.log(mailInfo);
+  // console.log(mailInfo);
   return sendMail_(mailInfo);
 };
 
@@ -72,10 +72,10 @@ const sendMailer = async (req, res) => {
 
   try {
     if (clientMailInstance instanceof ClientMail) {
-      console.log(`from inside of clientMail ${clientMailInstance}`);
+      // console.log(`from inside of clientMail ${clientMailInstance}`);
       await sendClientMail(clientMailInstance);
     } else if (devMailInstance instanceof DevMail) {
-      console.log(`from inside of devMail ${devMailInstance}`);
+      // console.log(`from inside of devMail ${devMailInstance}`);
       await sendDevMail(devMailInstance);
     } else {
       throw new Error("Invalid type");
